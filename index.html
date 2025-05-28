@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Balderdash Card Simulator</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      padding: 50px;
+      background-color: #f4f4f4;
+    }
+    .card {
+      background: white;
+      border-radius: 10px;
+      padding: 30px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.2);
+      max-width: 500px;
+      margin: auto;
+    }
+    #word {
+      font-size: 24px;
+      font-weight: bold;
+      margin-bottom: 15px;
+    }
+    #definition {
+      font-size: 18px;
+      color: #555;
+    }
+    button {
+      margin: 10px;
+      padding: 10px 20px;
+      font-size: 16px;
+      border: none;
+      background-color: #007bff;
+      color: white;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #0056b3;
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <div id="word">Click "Draw Card" to begin!</div>
+    <div id="definition"></div>
+    <button onclick="drawCard()">Draw Card</button>
+    <button onclick="checkOnline()">Check Online</button>
+  </div>
+
+  <script>
+    const cards = [
+      { word: "Agog", definition: "Very eager or curious to hear or see something." },
+      { word: "Apodyopsis", definition: "The act of mentally undressing someone." },
+      { word: "Callipygian", definition: "Having well-shaped buttocks." },
+      { word: "Cacology", definition: "Bad choice of words or poor pronunciation." },
+      { word: "Defenestration", definition: "The act of throwing someone out of a window." },
+      { word: "Furphy", definition: "A rumor or an improbable story." },
+      { word: "Gardyloo", definition: "A warning cry before throwing slops from above." },
+      { word: "Limerence", definition: "The state of being infatuated with another person." },
+      { word: "Noctivagant", definition: "Wandering in the night." },
+      { word: "Nudiustertian", definition: "Of or relating to the day before yesterday." },
+      { word: "Peregrinate", definition: "To travel or wander from place to place." },
+      { word: "Quire", definition: "Two dozen sheets of paper." },
+      { word: "Ratoon", definition: "A small shoot growing from the root of a plant." },
+      { word: "Recumbentibus", definition: "A knockout punch, either verbal or physical." },
+      { word: "Scripturient", definition: "Having a strong urge to write." },
+      { word: "Snollygoster", definition: "A shrewd but unprincipled person." },
+      { word: "Tyrotoxism", definition: "Poisoning by cheese or other dairy products." },
+      { word: "Ultracrepidarian", definition: "Someone who gives opinions on things they know nothing about." },
+      { word: "Wamble", definition: "Stomach rumbling or queasiness." },
+      { word: "Zugzwang", definition: "A situation where every possible move worsens your position (chess term)." },
+      { word: "Xylophilous", definition: "Attracted to or living on wood." },
+      { word: "Yclept", definition: "By the name of; called." },
+      { word: "Empleomania", definition: "An obsessive desire to hold public office." },
+      { word: "Dysania", definition: "The state of finding it hard to get out of bed." },
+      { word: "Psithurism", definition: "The sound of wind through trees." },
+      { word: "Zenzizenzizenzic", definition: "The eighth power of a number." }
+    ];
+
+    let currentWord = "";
+
+    function drawCard() {
+      const randomIndex = Math.floor(Math.random() * cards.length);
+      const card = cards[randomIndex];
+      document.getElementById("word").textContent = card.word;
+      document.getElementById("definition").textContent = card.definition;
+      currentWord = card.word;
+    }
+
+    function checkOnline() {
+      if (currentWord) {
+        const query = encodeURIComponent(currentWord + " definition");
+        window.open(`https://www.google.com/search?q=${query}`, "_blank");
+      } else {
+        alert("Please draw a card first!");
+      }
+    }
+  </script>
+</body>
+</html>
